@@ -140,6 +140,7 @@ else
     else
         if [ -f "config/main.yml" ]; then
           setStatusMessage "Running ansible playbook for generic user via main.yml"
+          ansible-playbook -i "localhost," config/main.yml
         else
           triggerError "No playbook for $username found"
         fi
