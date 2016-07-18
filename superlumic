@@ -138,6 +138,10 @@ else
         setStatusMessage "Running the ansible playbook for $username but use roderik.yml as fallback"
         ansible-playbook -i "localhost," config/roderik.yml
     else
-        triggerError "No playbook for $username found"
+        if [ -f "config/main.yml" ]; then
+          setStatusMessage "Running ansible playbook for generic user via main.yml"
+        else
+          triggerError "No playbook for $username found"
+        fi
     fi
 fi
